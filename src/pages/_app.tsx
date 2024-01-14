@@ -1,6 +1,5 @@
 import {AppProps} from 'next/app';
 import {NextRouter, withRouter} from 'next/router';
-import {NextIntlClientProvider} from 'next-intl';
 
 import '../main.css';
 
@@ -8,16 +7,8 @@ type Props = AppProps & {
   router: NextRouter;
 };
 
-function App({Component, pageProps, router}: Props) {
-  return (
-    <NextIntlClientProvider
-      locale={(router.query?.locale as string) ?? 'en'}
-      messages={pageProps.messages}
-      timeZone="Europe/Vienna"
-    >
-      <Component {...pageProps} />
-    </NextIntlClientProvider>
-  );
+function App({Component, pageProps}: Props) {
+  return <Component {...pageProps} />;
 }
 
 export default withRouter(App);
